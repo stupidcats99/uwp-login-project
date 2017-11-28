@@ -22,8 +22,12 @@ namespace kolmasProjekt
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        //Init variables
         int loginCount = 0;
         bool canLogin = true;
+        string name = "stupidcats";
+        string pass = "password";
+
         public MainPage()
         {
             this.InitializeComponent();
@@ -31,27 +35,25 @@ namespace kolmasProjekt
 
         private void submit_Click(object sender, RoutedEventArgs e)
         {
-            string name = "stupidcats";
-            string pass = "password";
-            
+            //Check username, password and if user is allowed to login
             if(username.Text == name && password.Password == pass && canLogin)
             {
-                feedbackMsg.Text = "Login successful!";
+                //Navigate to new view/page
                 this.Frame.Navigate(typeof(profilepage), name);
             }
+            //When username, password or user is not allowed to login
             else
             {
+                //Increment attempts count, display feedback
+                loginCount++;
+                feedbackMsg.Text = "Wrong username or password!";
+                //When login attempts are 3
                 if (loginCount == 3)
                 {
+                    //Set login to unavailable, display feedback
                     canLogin = false;
                     feedbackMsg.Text = "You cannot login no more!";
-                }
-                else
-                {
-                    loginCount++;
-                    feedbackMsg.Text = "Wrong username or password!";
-                }
-              
+                } 
             }
         }
     }

@@ -25,6 +25,7 @@ namespace kolmasProjekt
         string name;
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            //Display user name on screen
             name = e.Parameter as String;
             profileTitle.Text = "Hello, " +  name  + "!";
 
@@ -32,7 +33,6 @@ namespace kolmasProjekt
         public profilepage()
         {
             this.InitializeComponent();
-            //profileTitle.Text = name;
         }
     }
 }
